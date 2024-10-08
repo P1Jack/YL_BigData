@@ -12,11 +12,14 @@ with open("log.tsv", 'r', encoding='utf-8') as r_file:
             user_id, timestamp = row[0], row[1].split('T')[0]
             ym, d = timestamp[:7], int(timestamp[8:])
             cur_date = datetime.strptime(timestamp, '%Y-%m-%d')
-            # print(cur_date, datetime.strptime(ym, '%Y-%m') - cur_date)
-            # if user_id not in users:
-            #     users[user_id] = cur_date
-            # if users[user_id]
-            # if ym not in cohorts:
-            #     cohorts[ym] = {0: 0, 1: 0, 2: 0, 3: 0}
-            # for i in range(3):
-            #     if d
+            if user_id not in users:
+                users[user_id] = cur_date
+            if row[2] == 'checkout':
+                if ym not in cohorts:
+                    cohorts[ym] = {0: 0, 1: 0, 2: 0, 3: 0}
+                if datetime.strptime(ym, '%Y-%m') - users[user_id] < timedelta(days=1):
+                    pass
+                print(users[user_id], datetime.strptime(ym, '%Y-%m'))
+                print(datetime.strptime(ym, '%Y-%m') - users[user_id])
+                # for i in range(3):
+                #     if d
